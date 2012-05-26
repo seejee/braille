@@ -10,7 +10,7 @@ class BrailleView < UIView
   end
 
   def render
-    self.backgroundColor = UIColor.whiteColor
+    self.backgroundColor = UIColor.lightGrayColor
 
     @text = build_text(self)
     self.addSubview(@text)
@@ -34,7 +34,9 @@ class BrailleView < UIView
     UITextField.new.tap do |t|
       t.frame = align_top(@margin, parent) 
       t.font = @font 
+      t.placeholder = "Enter text"
       t.borderStyle = UITextBorderStyleRoundedRect
+      t.clearButtonMode = UITextFieldViewModeWhileEditing
     end
   end
 
@@ -42,6 +44,13 @@ class BrailleView < UIView
     UITextView.new.tap do |t|
       t.frame = align_bottom(top, @margin, parent) 
       t.font = @font
+      t.editable = false
+
+      t.layer.cornerRadius = 5
+      t.layer.borderWidth = 1.0
+      t.layer.borderColor = UIColor.darkGrayColor
+
+      t.clipsToBounds = true
     end
   end
 end
