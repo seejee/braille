@@ -13,33 +13,35 @@ class BrailleViewController < UIViewController
 
   def viewDidLoad
     @margin = 20
+    @font = UIFont.fontWithName("Helvetica-Light", size: 27.0)
     @braille = Braille.new
 
+    render 
+  end
+
+  def render
     view.backgroundColor = UIColor.whiteColor
 
-    add_entry_text
-    add_braille_display
-  end
-
-  def add_entry_text
-    @text = UITextField.new
-    @text.frame = align_top(@margin, view) 
-    @text.font = UIFont.fontWithName("Helvetica-Light", size: 27.0)
-    @text.borderStyle = UITextBorderStyleRoundedRect
+    @text = build_entry_text(view)
     view.addSubview(@text)
+
+    @braille_display = build_braille_display(@text.frame.origin.y + @text.frame.size.height, view)
+    view.addSubview(@braille_display)
   end
 
-  def add_braille_display 
+  def build_entry_text(parent)
+    text = UITextField.new
+    text.frame = align_top(@margin, parent) 
+    text.font = @font 
+    text.borderStyle = UITextBorderStyleRoundedRect
+    text
+  end
+
+  def build_braille_display(top, parent)
     braille = UITextView.new
-    braille.frame = align_bottom(@text.frame.origin.y + @text.frame.size.height, @margin, view) 
-    braille.font = UIFont.fontWithName("Helvetica-Light", size: 27.0)
-    text = ""
-    10.times do 
-      text << @braille.random
-      text << " "
-    end
-    braille.text = text 
-    view.addSubview(braille)
+    braille.frame = align_bottom(top, @margin, parent) 
+    braille.font = @font
+    braille
   end
 
 end
