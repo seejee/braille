@@ -12,15 +12,6 @@ class BrailleViewController < UIViewController
   def textFieldShouldReturn(text_field)
     translated = @braille.translate(text_field.text)
     view.show(translated)
-
     true
-  end
-
-  def build_random_braille
-    text = ""
-    15.times do 
-      text << @braille.random
-    end
-    text
   end
 end
