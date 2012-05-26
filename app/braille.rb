@@ -4,10 +4,18 @@ class Braille
   end
 
   def translate(input)
-    random
+    words = input.scan(/\w+/)
+    translated = words.map { |w| translate_word(w) }
+    translated.join(' ')
   end
 
   private
+
+  def translate_word(word)
+    braille = ""
+    word.each_char { |c| braille << random }
+    braille
+  end
 
   def characters
     @characters ||= build_characters

@@ -13,7 +13,6 @@ class BrailleViewController < UIViewController
     translated = @braille.translate(text_field.text)
     view.show(translated)
 
-    text_field.resignFirstResponder
     true
   end
 
