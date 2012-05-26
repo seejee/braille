@@ -15,9 +15,16 @@ class BrailleView < UIView
     @text = build_text(self)
     self.addSubview(@text)
 
-    @braille_display = build_braille_display(@text.frame.origin.y + @text.frame.size.height, self)
+    braille_display_top = @text.frame.origin.y + @text.frame.size.height
+    @braille_display = build_braille_display(braille_display_top, self)
     self.addSubview(@braille_display)
   end
+
+  def show(braille)
+    @braille_display.text = braille
+  end
+
+  private
 
   def build_text(parent)
     UITextField.new.tap do |t|
