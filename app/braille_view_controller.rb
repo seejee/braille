@@ -9,24 +9,36 @@ module Alignment
 end
 
 class BrailleViewController < UIViewController
-  include Alignment
+  def loadView
+    self.view = BrailleView.alloc.init
+  end
 
   def viewDidLoad
-    @margin = 20
-    @font = UIFont.fontWithName("Helvetica-Light", size: 27.0)
     @braille = Braille.new
+    view.render 
+  end
 
-    render 
+end
+
+class BrailleView < UIView
+  include Alignment
+
+  def initWithFrame(rect)
+    if(super)
+      @margin = 20
+      @font = UIFont.fontWithName("Helvetica-Light", size: 27.0)
+    end
+    self
   end
 
   def render
-    view.backgroundColor = UIColor.whiteColor
+    self.backgroundColor = UIColor.whiteColor
 
-    @text = build_entry_text(view)
-    view.addSubview(@text)
+    @text = build_entry_text(self)
+    self.addSubview(@text)
 
-    @braille_display = build_braille_display(@text.frame.origin.y + @text.frame.size.height, view)
-    view.addSubview(@braille_display)
+    @braille_display = build_braille_display(@text.frame.origin.y + @text.frame.size.height, self)
+    self.addSubview(@braille_display)
   end
 
   def build_entry_text(parent)
