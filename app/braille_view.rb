@@ -24,6 +24,10 @@ class BrailleView < UIView
     @braille_display.text = braille
   end
 
+  def bind(target)
+    @text.delegate = target
+  end
+
   private
 
   def build_text(parent)

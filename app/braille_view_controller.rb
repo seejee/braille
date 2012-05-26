@@ -6,7 +6,12 @@ class BrailleViewController < UIViewController
   def viewDidLoad
     @braille = Braille.new
     view.render 
-    view.show(build_random_braille)
+    view.bind(self)
+  end
+
+  def textFieldShouldReturn(text_field)
+    text_field.resignFirstResponder
+    true
   end
 
   def build_random_braille
