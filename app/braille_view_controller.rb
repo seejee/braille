@@ -7,5 +7,4 @@ class BrailleViewController < UIViewController
     @braille = Braille.new
     view.render 
   end
-
 end
