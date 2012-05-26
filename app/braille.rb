@@ -3,6 +3,12 @@ class Braille
     characters.sample
   end
 
+  def translate(input)
+    random
+  end
+
+  private
+
   def characters
     @characters ||= build_characters
   end
