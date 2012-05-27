@@ -47,7 +47,7 @@ class BrailleView < UIView
       t.editable = false
 
       t.layer.cornerRadius = 5
-      t.layer.borderWidth = 1.0
+      t.layer.borderWidth = 5.0
       t.layer.borderColor = UIColor.darkGrayColor
 
       t.clipsToBounds = true
