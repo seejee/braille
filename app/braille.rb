@@ -24,7 +24,7 @@ class Braille
   def build_characters
     chars = []
 
-    (0x2800..0x28FF).each do |i|
+    (0x2800..0x283F).each do |i|
       chars << to_unicode(i.to_s(16))
     end
 
