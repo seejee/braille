@@ -37,6 +37,7 @@ class BrailleView < UIView
       t.placeholder = "Enter text"
       t.borderStyle = UITextBorderStyleRoundedRect
       t.clearButtonMode = UITextFieldViewModeWhileEditing
+      t.autocapitalizationType = UITextAutocapitalizationTypeNone
     end
   end
 

@@ -48,8 +48,15 @@ class Braille
   end
 
   def translate_char(c)
+    result = ""
+
+    if(c == c.upcase)
+      result << "\u2820"
+    end
+
     c = c.downcase
-    UEB[c] || random
+    result << UEB[c] || random
+    result
   end
 
   def characters

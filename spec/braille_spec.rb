@@ -33,6 +33,10 @@ describe Braille do
     test "z", "\u2835"
   end
 
+  it "should convert capital letters" do
+    test "Z", "\u2820\u2835"
+  end
+
   def test(english, braille)
     subject.translate(english).should == braille
   end
