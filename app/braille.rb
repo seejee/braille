@@ -1,9 +1,5 @@
 class Braille
 
-  def random
-    characters.sample
-  end
-
   def translate(input)
     words = input.scan(/\w+/)
     translated = words.map { |w| translate_word(w) }
@@ -12,7 +8,7 @@ class Braille
 
   private
 
-  UEB = {
+  ALPHA = {
     "a" => "\u2801",
     "b" => "\u2803",
     "c" => "\u2809",
@@ -41,6 +37,10 @@ class Braille
     "z" => "\u2835",
   }
 
+  SPECIAL = {
+    :upper => "\u2820"
+  }
+
   def translate_word(word)
     braille = ""
     word.each_char { |c| braille << translate_char(c) }
@@ -51,30 +51,12 @@ class Braille
     result = ""
 
     if(c == c.upcase)
-      result << "\u2820"
+      result << SPECIAL[:upper]
     end
 
     c = c.downcase
-    result << UEB[c] || random
+    result << ALPHA[c] || c
     result
-  end
-
-  def characters
-    @characters ||= build_characters
-  end
-
-  def build_characters
-    chars = []
-
-    (0x2800..0x283F).each do |i|
-      chars << to_unicode(i.to_s(16))
-    end
-
-    chars
-  end
-
-  def to_unicode(hex_string)
-   [hex_string.hex].pack("U")
   end
 
 end
