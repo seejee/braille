@@ -37,8 +37,22 @@ class Braille
     "z" => "\u2835",
   }
 
+  NUMBER = {
+    "1" => "\u2801",
+    "2" => "\u2803",
+    "3" => "\u2809",
+    "4" => "\u2819",
+    "5" => "\u2811",
+    "6" => "\u280b",
+    "7" => "\u281b",
+    "8" => "\u2813",
+    "9" => "\u280a",
+    "0" => "\u281a",
+  }
+
   SPECIAL = {
-    :upper => "\u2820"
+    :capital => "\u2820",
+    :number  => "\u283c"
   }
 
   def translate_word(word)
@@ -50,12 +64,17 @@ class Braille
   def translate_char(c)
     result = ""
 
-    if(c == c.upcase)
-      result << SPECIAL[:upper]
+    case c.downcase
+    when /[a-z]/
+      result << SPECIAL[:capital] if c == c.upcase
+      result << ALPHA[c.downcase]
+    when /[0-9]/
+      result << SPECIAL[:number]
+      result << NUMBER[c]
+    else
+      result << c 
     end
 
-    c = c.downcase
-    result << ALPHA[c] || c
     result
   end
 

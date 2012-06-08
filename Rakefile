@@ -4,6 +4,7 @@ require 'motion-testflight'
 
 Motion::Project::App.setup do |app|
   app.name = 'braille'
+  app.version = '1.1'
   app.prerendered_icon = true
   app.icons = %w{icon-57.png icon-75.png icon-114.png}
   app.interface_orientations = [:portrait]
