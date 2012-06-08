@@ -1,8 +1,9 @@
-require_relative '../app/braille'
+require_relative '../app/lib/braille'
+require_relative '../app/lib/braille/constants'
+require_relative '../app/lib/braille/word'
+require_relative '../app/lib/braille/char'
 
 describe Braille do
-
-  subject { Braille.new }
 
   it "should convert the alphabet" do
     verify "a", "\u2801"
@@ -37,7 +38,7 @@ describe Braille do
     verify "Z", "\u2820\u2835"
   end
 
-  it "should convert numbers" do
+  it "should convert single numbers" do
     verify "1", "\u283c\u2801"
     verify "2", "\u283c\u2803"
     verify "3", "\u283c\u2809"
@@ -50,8 +51,12 @@ describe Braille do
     verify "0", "\u283c\u281a"
   end
 
+  it "should only put the number prefix for the the first number" do
+    verify "12", "\u283c\u2801\u2803"
+  end
+
   def verify(english, braille)
-    subject.translate(english).should == braille
+    Braille.translate(english).should == braille
   end
 
 end
