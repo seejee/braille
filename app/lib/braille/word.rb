@@ -1,4 +1,26 @@
 module Braille
+  class Token
+    def initialize(token)
+      @word, @punc = split(token)
+    end
+
+    def translate
+      braille = @word.translate 
+      braille << PUNCTUATION[@punc] if @punc
+      braille
+    end
+
+    private
+
+    def split(token)
+      punctuation = PUNCTUATION.keys.join("")
+      word = token.tr(punctuation, "")
+      punc = token.match("[#{punctuation}]")
+      punc = punc[0] if punc
+      [ Word.new(word), punc ]
+    end
+  end
+
   class Word
     def initialize(word)
       @word = word
@@ -12,14 +34,10 @@ module Braille
       end
     end
 
-    private 
+    private
 
     def contraction?
       CONTRACTIONS.has_key?(@word.downcase)
-    end
-
-    def starts_with_upper?
-      Char.new(@word[0]).upper?
     end
 
     def contracted
@@ -27,6 +45,10 @@ module Braille
       braille << SPECIAL[:capital] if starts_with_upper?
       braille << CONTRACTIONS[@word.downcase]
       braille
+    end
+
+    def starts_with_upper?
+      Char.new(@word[0]).upper?
     end
 
     def letter_by_letter
@@ -51,8 +73,6 @@ module Braille
       elsif c.number?
         result << SPECIAL[:number] unless previous.number?
         result << NUMBER[c]
-      elsif c.punctuation?
-        result << PUNCTUATION[c]
       else
         result << c
       end

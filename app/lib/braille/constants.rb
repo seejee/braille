@@ -45,7 +45,6 @@ module Braille
   SPECIAL = {
     :capital   => "\u2820",
     :number    => "\u283c",
-    :full_stop => "\u2832"
   }
 
   PUNCTUATION = {
@@ -54,7 +53,16 @@ module Braille
   }
 
   CONTRACTIONS = {
-    "like" => "\u2807"
+    "like" => "\u2807",
+    "but"  => "\u2803",
+    "you"  => "\u283D",
+    "will" => "\u283A",
+    "just" => "\u281A",
+    "do"   => "\u2819",
+    "that" => "\u281E",
+    "so"   => "\u280E",
+    "can"  => "\u2809",
+    "go"   => "\u281B",
   }
 
 end
