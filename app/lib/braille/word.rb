@@ -5,6 +5,31 @@ module Braille
     end
 
     def translate
+      if contraction?
+        contracted 
+      else
+        letter_by_letter
+      end
+    end
+
+    private 
+
+    def contraction?
+      CONTRACTIONS.has_key?(@word.downcase)
+    end
+
+    def starts_with_upper?
+      Char.new(@word[0]).upper?
+    end
+
+    def contracted
+      braille = ""
+      braille << SPECIAL[:capital] if starts_with_upper?
+      braille << CONTRACTIONS[@word.downcase]
+      braille
+    end
+
+    def letter_by_letter
       braille = ""
       previous = Char.new("")
 

@@ -53,4 +53,8 @@ module Braille
     ","   => "\u2802"
   }
 
+  CONTRACTIONS = {
+    "like" => "\u2807"
+  }
+
 end

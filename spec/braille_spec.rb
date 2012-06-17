@@ -63,6 +63,14 @@ describe Braille do
     verify ",", "\u2802"
   end
 
+  it "should perform contractions" do
+    verify "like", "\u2807"
+  end
+
+  it "should captialize contractions" do
+    verify "Like", "\u2820\u2807"
+  end
+
   def verify(english, braille)
     Braille.translate(english).should == braille
   end
