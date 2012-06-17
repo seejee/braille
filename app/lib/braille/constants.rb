@@ -43,8 +43,9 @@ module Braille
   }
 
   SPECIAL = {
-    :capital => "\u2820",
-    :number  => "\u283c"
+    :capital   => "\u2820",
+    :number    => "\u283c",
+    :full_stop => "\u2832"
   }
 
 end

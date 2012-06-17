@@ -55,6 +55,10 @@ describe Braille do
     verify "12", "\u283c\u2801\u2803"
   end
 
+  it "should convert a period to a full stop" do
+    verify "Z.", "\u2820\u2835\u2832"
+  end
+
   def verify(english, braille)
     Braille.translate(english).should == braille
   end

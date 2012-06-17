@@ -9,6 +9,10 @@ module Braille
       c =~ /[0-9]/
     end
 
+    def punctuation?
+      c =~ /[.!?]/ 
+    end
+
     def letter?
       c.downcase =~ /[a-z]/
     end

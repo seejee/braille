@@ -26,6 +26,8 @@ module Braille
       elsif c.number?
         result << SPECIAL[:number] unless previous.number?
         result << NUMBER[c]
+      elsif c.punctuation?
+        result << SPECIAL[:full_stop]
       else
         result << c
       end
