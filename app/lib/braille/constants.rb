@@ -48,4 +48,9 @@ module Braille
     :full_stop => "\u2832"
   }
 
+  PUNCTUATION = {
+    "."   => "\u2832",
+    ","   => "\u2802"
+  }
+
 end

@@ -6,15 +6,15 @@ module Braille
     end
 
     def number?
-      c =~ /[0-9]/
+      NUMBER.has_key?(c)
     end
 
     def punctuation?
-      c =~ /[.!?]/ 
+      PUNCTUATION.has_key?(c)
     end
 
     def letter?
-      c.downcase =~ /[a-z]/
+      ALPHA.has_key?(c.downcase)
     end
 
     private

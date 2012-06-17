@@ -59,6 +59,10 @@ describe Braille do
     verify "Z.", "\u2820\u2835\u2832"
   end
 
+  it "should convert a comma" do
+    verify ",", "\u2802"
+  end
+
   def verify(english, braille)
     Braille.translate(english).should == braille
   end
