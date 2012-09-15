@@ -16,4 +16,6 @@ Motion::Project::App.setup do |app|
   app.testflight.sdk = 'vendor/TestFlightSDK'
   app.testflight.api_token = '0aad2fd685bec400ce58e004fc54f48c_NDYwMzY4MjAxMi0wNS0yOCAxOTo0OToxMS4wMjE5Njk'
   app.testflight.team_token = 'a7be69e68b6c13aaf1d2bf7f52325093_OTQ0NDEyMDEyLTA1LTI4IDIwOjAyOjEwLjM1NDE0NQ'
+
+  app.files += Dir.glob(File.join(app.project_dir, 'vendor/braille_ueb/lib/**/*.rb'))
 end

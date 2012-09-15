@@ -1,0 +1,3 @@
+[submodule "vendor/braille_ueb"]
+	path = vendor/braille_ueb
+	url = https://github.com/seejee/braille_ueb.git
